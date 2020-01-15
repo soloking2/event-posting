@@ -4,7 +4,6 @@ import { PostService } from '../post.service';
 import {Subscription} from 'rxjs';
 
 @Component({
-  selector: 'mc-post-list',
   templateUrl: './post-list.component.html',
   styles: [
     `:host {

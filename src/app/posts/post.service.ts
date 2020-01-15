@@ -37,6 +37,9 @@ export class PostService {
     return this.postUpdated.asObservable();
   }
 
+  getPost(id: string) {
+    return this.http.get<{_id: string, title: string, content: string}>('http://localhost:3000/api/posts/' + id);
+  }
   addPost(title: string, content: string) {
     // tslint:disable-next-line: object-literal-shorthand
     const post: Post = { id: null, title: title, content: content };
@@ -48,6 +51,18 @@ export class PostService {
       this.postUpdated.next([...this.posts]);
     });
 
+  }
+
+  updatePost(id: string, title: string, content: string) {
+    // tslint:disable-next-line: object-literal-shorthand
+    const post: Post = { id: id, title: title, content: content };
+    this.http.put('http://localhost:3000/api/posts/' + id, post).subscribe(response => {
+      const updatePost = [...this.posts];
+      const oldPostIndex = updatePost.findIndex(p => p.id === post.id);
+      updatePost[oldPostIndex] = post;
+      this.posts = updatePost;
+      this.postUpdated.next([...this.posts]);
+    });
   }
 
   deletePost(postId: string) {
