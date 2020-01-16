@@ -9,19 +9,35 @@ import {Subscription} from 'rxjs';
     `:host {
       display: block;
       margin-top: 1rem;
-    }`
+    }
+    mat-spinner{
+      margin: auto;
+    }
+
+    .image-fix {
+      width: 100%;
+    }
+
+    .image-fix img {
+      width:100%;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+    `
   ]
 })
 
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
+  isLoading = false;
   private postsSub: Subscription;
 
   constructor(public  postService: PostService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.postService.getPosts();
     this.postsSub = this.postService.getPostUpdateListener().subscribe((post) => {
+      this.isLoading = false;
       this.posts = post;
     });
   }

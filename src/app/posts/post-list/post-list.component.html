@@ -1,8 +1,12 @@
-<mat-accordion multi="true" *ngIf="posts.length > 0">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
       {{post.title}}
     </mat-expansion-panel-header>
+    <div class="image-fix">
+      <img [src]="post.imagePath" [alt]="post.title">
+    </div>
     <p>{{post.content}}</p>
     <mat-action-row>
       <a [routerLink]="['/edit', post.id]" mat-button color="primary">EDIT</a>
@@ -10,4 +14,4 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p class="mat-body-1" *ngIf="posts.length <= 0">No posts added yet</p>
+<p class="mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet</p>
