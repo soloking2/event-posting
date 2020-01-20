@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const postsRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
+
 const app = express();
 mongoose.connect("mongodb+srv://soloking2:soloking2@cluster0-2p0fa.mongodb.net/test?retryWrites=true&w=majority").then(() => console.log('Connected to Database')).catch(() => console.log('Connection failed'));
 
@@ -24,6 +26,7 @@ app.use((req, res, next) => {
 
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/user", userRoutes);
 
 
 

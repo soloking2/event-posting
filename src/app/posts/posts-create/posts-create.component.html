@@ -2,7 +2,8 @@
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (ngSubmit)="onSavePost()" [formGroup]="form" *ngIf="!isLoading">
     <mat-form-field>
-      <input type="text" matInput
+      <input type="text"
+      matInput
       formControlName="title"
       placeholder="Title"
       >
@@ -17,7 +18,8 @@
       <img [src]="imagePreview" [alt]="form.value.title">
     </div>
     <mat-form-field>
-      <textarea cols="30" rows="6" matInput
+      <textarea cols="30" rows="6"
+      matInput
       formControlName="content"
       placeholder="Content"
       ></textarea>
