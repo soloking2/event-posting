@@ -1,6 +1,6 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form autocomplete="off" *ngIf="!isLoading" #signupForm="ngForm" (ngSubmit)="onLogin(signupForm)">
+  <form autocomplete="off" *ngIf="!isLoading" #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)">
     <mat-form-field>
       <input
       type="email"
